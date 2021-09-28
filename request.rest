@@ -1,0 +1,7 @@
+GET http://127.0.0.1:8000/especialidades/
+Authorization: Token 9d8b0d43862668cf961a6b98af5c75cd51588d32
+
+###
+
+GET http://127.0.0.1:8000/especialidades/?search=ped
+Authorization: Token 9d8b0d43862668cf961a6b98af5c75cd51588d32

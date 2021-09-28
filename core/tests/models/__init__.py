@@ -1,0 +1,5 @@
+from .specialties_model_test_case import SpecialtiesModelTestCase
+from .doctors_model_test_case import DoctorsModelTestCase
+from .schedules_model_test_case import SchedulesModelTestCase
+from .diarys_model_test_case import DiarysModelTestCase
+from .appointments_model_test_case import AppointmentsModelTestCase

@@ -1,0 +1,2 @@
+from .users_view_test_case import UserViewTestCase
+from .token_view_test_case import TokenViewTestCase

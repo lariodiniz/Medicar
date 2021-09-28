@@ -1,0 +1,2 @@
+from .specialties_view_test_case import SpecialtiesViewTestCase
+from .doctors_view_test_case import DoctorsViewTestCase
