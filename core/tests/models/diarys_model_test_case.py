@@ -19,10 +19,10 @@ class DiarysModelTestCase(TestCase):
         self.diary.doctor = self.doctor
         self.diary.save()
 
-        for h in range(8, 18):
+        for h in range(1, 5):
+            hour = datetime.now() + timedelta(hours = h)
             schedule = Schedules()
-            schedule.hour = h
-            schedule.minute = 0
+            schedule.hour = hour.time()
             schedule.diary = self.diary
             schedule.save()
 
@@ -51,17 +51,11 @@ class DiarysModelTestCase(TestCase):
         self.assertEquals(diary.day, datetime.now().date())
         self.assertEquals(diary.doctor.name, self.diary.doctor.name)
         self.assertEquals(diary.doctor.name, "Doutor Chapatín")
-        schedules = diary.schedules.all()
-
-        hour = 8
-        for schedule in schedules:
-            self.assertEquals(schedule.start, f'{hour:02d}:{0:02d}')
-            hour += 1
 
     def test_str_doctors(self):
         """test if str method of Diarys is correctly"""
         self.assertEquals(
-            str(self.diary), f'{self.diary.hour:02d}:{self.diary.minute:02d}')
+            str(self.diary), f'{self.diary.doctor.name} - {self.diary.day}')
 
     def test_there_are_not_diarys_creation_when_diarys_exist(self):
         """test if you are creating a Diarys correctly"""

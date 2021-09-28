@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from model_mommy import mommy
+from django.contrib.auth.models import User
 
 from core.models import Appointments, Doctors, Diarys, Schedules
 
@@ -13,6 +14,7 @@ class AppointmentsModelTestCase(TestCase):
     def setUp(self):
         """Initial Test Settings"""
 
+        self.user = mommy.make(User)
         self.doctor = mommy.make(Doctors, name="Doutor Chapatín")
         self.diary = Diarys()
         self.diary.day = datetime.now().date()
@@ -20,14 +22,14 @@ class AppointmentsModelTestCase(TestCase):
         self.diary.save()
 
         schedule = Schedules()
-        for h in range(8, 18):
+        for h in range(1, 5):
             schedule = Schedules()
-            schedule.hour = h
-            schedule.minute = 0
+            schedule.hour = f'{h:02d}:00'
             schedule.diary = self.diary
             schedule.save()
 
         self.appointment = mommy.prepare(Appointments)
+        self.appointment.user = self.user
         self.appointment.schedule = schedule
         self.appointment.day = schedule.diary.day
         self.appointment.doctor = schedule.diary.doctor

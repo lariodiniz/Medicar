@@ -12,7 +12,7 @@ class Schedules(models.Model):
         - finish -> return schedule finish time in stringformat
 
     """
-    hour = models.TimeField('Hora', auto_now=False, auto_now_add=False,)
+    hour = models.TimeField('Hora', auto_now=False, auto_now_add=False)
     diary = models.ForeignKey(
         'core.Diarys', verbose_name='Agenda', on_delete=models.CASCADE, related_name='schedules')
 
@@ -28,3 +28,4 @@ class Schedules(models.Model):
     def __str__(self):
         hour = str(self.hour).split(':')
         return f'{hour[0]}:{hour[1]}'
+

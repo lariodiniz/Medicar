@@ -28,11 +28,12 @@ class DoctorsViewTestCase(APITestCase):
         Doctors.objects.all().delete()
 
     def test_dotors_view_url(self):
+        """check if the endpoint 'core:doctors' is correct"""
         self.assertEqual(self.url, '/medicos/',
                          f'a url "{self.url}" should be /medicos/.')
 
     def test_dotors_view_get_user_not_login(self):
-        """tests whether a get to the dotors_view of a user who is not logged in returns status 401
+        """tests whether a get to the dotors_view of a user who is not logged in returns status 403
         """
         status_code = 403
         response = self.client.get(self.url)

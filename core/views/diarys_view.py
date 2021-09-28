@@ -24,7 +24,8 @@ class DiarysView(ListAPIView):
     def get_queryset(self):
 
         queryset = Diarys.objects.filter(
-            day__gte=datetime.now().date(), schedules__hour__gte=datetime.now().time(), schedules__appointment=None).order_by('day')
+            day__gte=datetime.now().date(), schedules__hour__gte=datetime.now().time(), 
+            schedules__appointment=None).order_by('day')
         doctor = self.request.query_params.getlist('medico')
         if len(doctor) > 0:
             queryset = queryset.filter(doctor__id__in=doctor)

@@ -39,12 +39,14 @@ class AppointmentsView(ListAPIView):
         return False, ''
 
     def post(self, request, format='json'):
+        
         error, mens = self._valid_json(request.data)
         if error:
             return Response(data=mens, status=status.HTTP_400_BAD_REQUEST)
         else:
 
             try:
+               
                 schedule = Schedules.objects.get(
                     diary__id=request.data['agenda_id'],
                     hour=request.data['horario'],
